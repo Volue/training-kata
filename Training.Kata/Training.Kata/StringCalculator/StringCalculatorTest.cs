@@ -16,7 +16,7 @@ public class StringCalculatorTest
     [Fact]
     public void Calculate_GivenText_ShouldThrow()
     {
-        Assert.Throws<ArgumentException>(() => _stringCalculator.Calculate("Potato"));
+        Assert.Throws<FormatException>(() => _stringCalculator.Calculate("Potato"));
     }
     
     [Theory]
@@ -50,6 +50,12 @@ public class StringCalculatorTest
     public void Calculate_Given10dividedby2_ReturnsNegative5()
     {
         _stringCalculator.Calculate("10 / 2").Should().Be(5);
+    }
+    
+    [Fact]
+    public void Calculate_Given10dividedby0_Throws()
+    {
+        Assert.Throws<DivideByZeroException>(() => _stringCalculator.Calculate("10 / 0"));
     }
     
     [Fact]
