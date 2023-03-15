@@ -38,7 +38,7 @@ public class CashRegisterTest
     [Fact]
     public void AddDiscount_GivenBook_AddsItToItems()
     {
-        _cashRegister.AddItem(_book);
+        _cashRegister.AddDiscount(_priceDiscount);
         _cashRegister.Discounts.Count.Should().Be(1);
     }
     

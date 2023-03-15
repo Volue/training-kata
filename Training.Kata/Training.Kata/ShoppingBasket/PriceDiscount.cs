@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Training.Kata.ShoppingBasket;
 
@@ -13,6 +14,10 @@ public class PriceDiscount : Discount
     
     public override decimal Apply(IEnumerable<Item> items)
     {
-        throw new System.NotImplementedException();
+        items.Select(item =>
+        {
+            item.Price -= Value;
+            return item;
+        });
     }
 }

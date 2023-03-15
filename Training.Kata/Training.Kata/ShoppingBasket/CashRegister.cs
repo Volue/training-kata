@@ -1,25 +1,40 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Training.Kata.ShoppingBasket;
 
 public class CashRegister
 {
-    public List<Item> Items { get; set; }
-    public List<Discount> Discounts { get; set; }
+    public List<Item> Items { get; set; } = new List<Item>();
+    public List<Discount> Discounts { get; set; } = new List<Discount>();
 
     public void AddItem(Item item)
     {
-        throw new NotImplementedException();
+        if (item is null)
+        {
+            throw new ArgumentNullException();
+        }
+        
+        Items.Add(item);
     }
     
     public void AddDiscount(Discount discount)
     {
-        throw new NotImplementedException();
+        if (discount is null)
+        {
+            throw new ArgumentNullException();
+        }
+        
+        Discounts.Add(discount);
     }
 
     public decimal GetTotal()
     {
-        throw new NotImplementedException();
+        return Items.Aggregate(0m, (accumulator, item) =>
+        {
+            accumulator += item.Price;
+            return accumulator;
+        });
     }
 }
