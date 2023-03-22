@@ -69,7 +69,7 @@ public class CashRegisterTest
         _cashRegister.AddItem(_book);
         _cashRegister.AddItem(_book);
         _cashRegister.AddDiscount(_priceDiscount);
-        _cashRegister.GetTotal().Should().Be(_book.Price * 2 - _priceDiscount.Value);
+        _cashRegister.GetTotal().Should().Be(_book.Price * 2 - _priceDiscount.Value * 2);
     }
     
     [Fact]

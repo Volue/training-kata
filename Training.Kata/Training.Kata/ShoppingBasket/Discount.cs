@@ -4,5 +4,5 @@ namespace Training.Kata.ShoppingBasket;
 
 public abstract class Discount
 {
-    public abstract decimal Apply(IEnumerable<Item> items);
+    public abstract decimal Apply(Item item);
 }

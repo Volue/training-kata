@@ -12,12 +12,9 @@ public class PriceDiscount : Discount
         Value = value;
     }
     
-    public override decimal Apply(IEnumerable<Item> items)
+    public override decimal Apply(Item item)
     {
-        items.Select(item =>
-        {
-            item.Price -= Value;
-            return item;
-        });
+        var discountedPrice = item.Price - Value;
+        return discountedPrice;
     }
 }

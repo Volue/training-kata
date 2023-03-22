@@ -33,8 +33,12 @@ public class CashRegister
     {
         return Items.Aggregate(0m, (accumulator, item) =>
         {
-            accumulator += item.Price;
-            return accumulator;
+            var accumulatedItem = Discounts.Aggregate(item, (priceAccumulator, discount) =>
+            {
+                var discountedItem = new Item(item.Name, discount.Apply(priceAccumulator));
+                return discountedItem;
+            });
+            return accumulatedItem.Price;
         });
     }
 }

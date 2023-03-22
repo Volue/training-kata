@@ -11,8 +11,9 @@ public class PercentDiscount : Discount
         Value = value;
     }
     
-    public override decimal Apply(IEnumerable<Item> items)
+    public override decimal Apply(Item item)
     {
-        throw new System.NotImplementedException();
+        var discountedPrice = item.Price * Value / 100;
+        return discountedPrice;
     }
 }
