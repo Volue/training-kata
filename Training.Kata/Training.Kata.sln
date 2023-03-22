@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training.Kata", "Training.Kata\Training.Kata.csproj", "{AA1CA85D-CBA6-4628-BB4F-7253B02DB1C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training.Kata.BarcodeScanner.Api", "Training.Kata.BarcodeScanner.Api\Training.Kata.BarcodeScanner.Api.csproj", "{4840B4ED-C927-44A9-A7CF-4166E013B07F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{AA1CA85D-CBA6-4628-BB4F-7253B02DB1C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA1CA85D-CBA6-4628-BB4F-7253B02DB1C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA1CA85D-CBA6-4628-BB4F-7253B02DB1C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4840B4ED-C927-44A9-A7CF-4166E013B07F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4840B4ED-C927-44A9-A7CF-4166E013B07F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4840B4ED-C927-44A9-A7CF-4166E013B07F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4840B4ED-C927-44A9-A7CF-4166E013B07F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
