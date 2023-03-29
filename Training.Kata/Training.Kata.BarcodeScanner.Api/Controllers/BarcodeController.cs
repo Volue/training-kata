@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Training.Kata.BarcodeScanner.Api.Model;
 using Training.Kata.BarcodeScanner.Api.Repository;
 
 namespace Training.Kata.BarcodeScanner.Api.Controllers;
@@ -26,6 +27,24 @@ public class BarcodeController : ControllerBase
         if (_repository.Barcodes.ContainsKey(barcode))
         {
             return Ok(_repository.Barcodes[barcode]);
+        }
+
+        return NotFound();
+    }
+    
+    [HttpPost("add")]
+    public IActionResult AddToBasket(string barcode)
+    {
+        if (_repository.Barcodes.ContainsKey(barcode))
+        {
+            _repository.ScannedBarcodes.Add(barcode);
+            var productsInBasket = _repository.ScannedBarcodes.Select(x => _repository.Barcodes[x]).ToList();
+            var response = new Basket
+            {
+                Sum = productsInBasket.Sum(x => x.Price),
+                Products = productsInBasket
+            };
+            return Ok(response);
         }
 
         return NotFound();
@@ -60,4 +79,7 @@ public class BarcodeController : ControllerBase
         
         return Ok(_repository.Barcodes.Where(x => x.Value.Name.Contains(name)));
     }
+    
+    // TODO: Napisz funkcje kontrolera BarcodeController która usunie ostatni dodany element z listy _repository.ScannedBarcodes
+    
 }
