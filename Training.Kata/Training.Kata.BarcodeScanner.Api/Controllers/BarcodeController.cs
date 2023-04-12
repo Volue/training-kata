@@ -41,13 +41,27 @@ public class BarcodeController : ControllerBase
             var productsInBasket = _repository.ScannedBarcodes.Select(x => _repository.Barcodes[x]).ToList();
             var response = new Basket
             {
-                Sum = productsInBasket.Sum(x => x.Price),
-                Products = productsInBasket
+                Discounts = _repository.Discounts,
+                Products = productsInBasket,
+                BarcodeDiscounts = _repository.BarcodeDiscounts
             };
             return Ok(response);
         }
 
         return NotFound();
+    }
+    
+    [HttpGet("basket")]
+    public IActionResult GetBasket()
+    {
+        var productsInBasket = _repository.ScannedBarcodes.Select(x => _repository.Barcodes[x]).ToList();
+        var response = new Basket
+        {
+            Discounts = _repository.Discounts,
+            Products = productsInBasket,
+            BarcodeDiscounts = _repository.BarcodeDiscounts
+        };
+        return Ok(response);
     }
     
     [HttpGet("search")]
@@ -82,4 +96,20 @@ public class BarcodeController : ControllerBase
     
     // TODO: Napisz funkcje kontrolera BarcodeController która usunie ostatni dodany element z listy _repository.ScannedBarcodes
     
+    [HttpPost("addDiscount")]
+    public IActionResult AddDiscount(decimal value, string? barcode)
+    {
+        if (!string.IsNullOrWhiteSpace(barcode) && _repository.Barcodes.ContainsKey(barcode))
+        {
+            _repository.BarcodeDiscounts[barcode] = value;
+            return Ok();
+        }
+        
+        if (value < 0)
+        {
+            return BadRequest();
+        }
+        _repository.Discounts.Add(value);
+        return Ok();
+    }
 }

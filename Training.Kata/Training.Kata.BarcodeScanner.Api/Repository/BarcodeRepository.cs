@@ -5,6 +5,8 @@ namespace Training.Kata.BarcodeScanner.Api.Repository;
 public class BarcodeRepository
 {
     public List<string> ScannedBarcodes = new();
+    public List<decimal> Discounts = new ();
+    public Dictionary<string, decimal> BarcodeDiscounts = new();
     public Dictionary<string, Product> Barcodes;
 
     public BarcodeRepository()
