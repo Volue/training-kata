@@ -11,6 +11,26 @@ public class Field
 
     public override string ToString()
     {
-        return $"{X},{Y}";
+        if (!IsVisible)
+        {
+            return "[ ]";
+        }
+
+        if (IsBomb)
+        {
+            return "[☠]";
+        }
+
+        if (IsMarked)
+        {
+            return "[🚩]";
+        }
+
+        if (BombedNeighbours > 0)
+        {
+            return $"[{BombedNeighbours}]";
+        }
+        
+        return "[_]";
     }
 }

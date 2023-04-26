@@ -18,13 +18,15 @@ public class GameController : ControllerBase
     [HttpGet("board")]
     public IActionResult GetBoard()
     {
-        return Ok(_gameService.GameBoard.Select(x => x.ToString()));
+        var groupsByY = _gameService.GameBoard.GroupBy(x => x.Y);
+        var boardStrings = groupsByY.Select(x => x.Aggregate(string.Empty, (acc, v) => $"{acc} {v}"));
+        return Ok(boardStrings);
     }
 
     [HttpPost("move")]
     public IActionResult MakeMove(int x, int y)
     {
-        _gameService.GameBoard.Single(field => field.X == x & field.Y == y).IsVisible = true;
+        _gameService.MakeMove(x, y);
         return Ok();
     }
 }
