@@ -29,6 +29,14 @@ public class GameService
         {
             MakeFirstMove(x, y);
         }
+
+        var field = GameBoard.Single(field => field.X == x & field.Y == y);
+        if (field.IsBomb)
+        {
+            GameBoard.ForEach(field => field.IsVisible = true);
+        }
+            .IsVisible = true;
+        // Zatrzymaj grę po odkryciu miny!
     }
 
     private void MakeFirstMove(int x, int y)
@@ -41,7 +49,20 @@ public class GameService
         
         foreach (var bombField in GameBoard.Where(field => field.IsBomb))
         {
-            // TU SKONCZYLISMY OSTATNIO
+            var xMax = bombField.X + 1;
+            var xMin = bombField.X - 1;
+            var yMax = bombField.Y + 1;
+            var yMin = bombField.Y - 1;
+
+            for (var xIndex = xMin; xIndex <= xMax; xIndex++)
+            {
+                for (var yIndex = yMin; yIndex <= yMax; yIndex++)
+                {
+                    var field = GameBoard.SingleOrDefault(boardField => boardField.X == xIndex & boardField.Y == yIndex);
+                    if (field is null) continue;
+                    field.BombedNeighbours++;
+                }
+            }
         }
         
         WasFirstMoveMade = true;
@@ -53,7 +74,7 @@ public class GameService
         if (!field.IsVisible)
         {
             field.IsBomb = true;
-            field.IsVisible = true; // TYMCZASOWE
+            // field.IsVisible = true; // TYMCZASOWE
         }
     }
 }
