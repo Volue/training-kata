@@ -7,20 +7,11 @@ public class GameService
     public bool WasFirstMoveMade;
     public List<Field> GameBoard = new();
     public Random Random = new Random();
+    public GameStateEnum GameState;
 
     public GameService()
     {
-        foreach (var i in Enumerable.Range(0, 5))
-        {
-            foreach (var j in Enumerable.Range(0, 5))
-            {
-                GameBoard.Add(new Field
-                {
-                    X = i,
-                    Y = j
-                });
-            }
-        }
+        NewGame();
     }
 
     public void MakeMove(int x, int y)
@@ -33,9 +24,12 @@ public class GameService
         var field = GameBoard.Single(field => field.X == x & field.Y == y);
         if (field.IsBomb)
         {
+            GameState = GameStateEnum.Lost;
             GameBoard.ForEach(field => field.IsVisible = true);
         }
-            .IsVisible = true;
+
+        field.IsMarked = false;
+        field.IsVisible = true;
         // Zatrzymaj grę po odkryciu miny!
     }
 
@@ -75,6 +69,35 @@ public class GameService
         {
             field.IsBomb = true;
             // field.IsVisible = true; // TYMCZASOWE
+        }
+    }
+
+    public bool FlagBomb(int x, int y)
+    {
+        var field = GameBoard.Single(field => field.X == x & field.Y == y);
+        if (field.IsVisible)
+        {
+            return false;
+        }
+        field.IsMarked = true;
+        return true;
+    }
+
+    public void NewGame()
+    {
+        GameBoard = new List<Field>();
+        GameState = GameStateEnum.InProgress;
+        WasFirstMoveMade = false;
+        foreach (var i in Enumerable.Range(0, 5))
+        {
+            foreach (var j in Enumerable.Range(0, 5))
+            {
+                GameBoard.Add(new Field
+                {
+                    X = i,
+                    Y = j
+                });
+            }
         }
     }
 }

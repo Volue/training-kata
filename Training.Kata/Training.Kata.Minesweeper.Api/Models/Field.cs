@@ -11,19 +11,19 @@ public class Field
 
     public override string ToString()
     {
-        if (!IsVisible)
+        if (IsMarked) //3
+        {
+            return "[🚩]";
+        }
+        
+        if (!IsVisible) //1
         {
             return "[ ]";
         }
 
-        if (IsBomb)
+        if (IsBomb) //2
         {
             return "[☠]";
-        }
-
-        if (IsMarked)
-        {
-            return "[🚩]";
         }
 
         if (BombedNeighbours > 0)

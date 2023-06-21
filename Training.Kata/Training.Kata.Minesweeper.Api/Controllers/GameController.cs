@@ -24,9 +24,26 @@ public class GameController : ControllerBase
     }
 
     [HttpPost("move")]
-    public IActionResult MakeMove(int x, int y)
+    public IActionResult MakeMove(int x, int y, bool flagBomb)
     {
+        if (_gameService.GameState != GameStateEnum.InProgress)
+        {
+            return StatusCode(402, "Game has ended. Insert coin to begin");
+        }
+        
+        if (flagBomb)
+        {
+            var result = _gameService.FlagBomb(x, y);
+            return result == true ? Ok() : Conflict("Cannot flag visible field");
+        }
         _gameService.MakeMove(x, y);
+        return Ok();
+    }
+    
+    [HttpPost("insert-coin")]
+    public IActionResult InsertCoin()
+    {
+        _gameService.NewGame();
         return Ok();
     }
 }
