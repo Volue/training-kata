@@ -34,9 +34,11 @@ public class GameController : ControllerBase
         if (flagBomb)
         {
             var result = _gameService.FlagBomb(x, y);
+            _gameService.IsGameAVictory();
             return result == true ? Ok() : Conflict("Cannot flag visible field");
         }
         _gameService.MakeMove(x, y);
+        _gameService.IsGameAVictory();
         return Ok();
     }
     

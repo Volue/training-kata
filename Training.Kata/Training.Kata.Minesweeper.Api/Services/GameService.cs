@@ -100,4 +100,15 @@ public class GameService
             }
         }
     }
+
+    public void IsGameAVictory()
+    {
+        var areBombsMarked = GameBoard.Where(field => field.IsBomb && field.IsMarked).Count() == 6;
+        var areAllNonBombedFieldsVisible = !GameBoard.Any(field => !field.IsVisible && !field.IsBomb);
+        if (areBombsMarked && areAllNonBombedFieldsVisible)
+        {
+            GameState = GameStateEnum.Won;
+            GameBoard.Where(field => field.IsBomb).ToList().ForEach(field => field.ShowVictory = true);
+        }
+    }
 }

@@ -8,9 +8,15 @@ public class Field
     public bool IsMarked;
     public bool IsBomb;
     public int BombedNeighbours;
+    public bool ShowVictory;
 
     public override string ToString()
     {
+        if (ShowVictory)
+        {
+            return "[🏆]";
+        }
+        
         if (IsMarked) //3
         {
             return "[🚩]";
