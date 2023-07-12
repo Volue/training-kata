@@ -6,8 +6,8 @@ namespace Training.Kata.Snake;
 
 public class Snake
 {
-    public Canvas Canvas;
-    public List<SnakeSegment> Body;
+    private readonly Canvas Canvas;
+    private readonly List<SnakeSegment> Body;
 
     public Snake(Canvas canvas, List<SnakeSegment> body)
     {
@@ -15,27 +15,37 @@ public class Snake
         Body = body;
     }
 
+    public void Update(int x, int y)
+    {
+        // Usuń starego węża
+        Draw(Color.Black);
+        
+        // Przesuń węża
+        UpdatePosition(x, y);
+        
+        // Narysuj węża
+        Draw(Color.Pink1);
+    }
+
     public void Draw(Color color)
     {
         Body.ForEach(s => Canvas.SetPixel(s.X, s.Y, color));
     }
 
-    public void Update()
+    public SnakeSegment GetHead()
     {
-        // Usuń starego węża
-        // Przesuń węża
-        // Narysuj węża
+        return Body.Single(x => x.Number == 0);
     }
 
-    public void UpdatePosition(int x, int y)
+    private void UpdatePosition(int x, int y)
     {
-        var oldPosition = Array.Empty<SnakeSegment>();
+        var oldPosition = new SnakeSegment[Body.Count];
         Body.CopyTo(oldPosition);
         MoveHead(x, y);
         MoveBody(oldPosition);
     }
 
-    public void MoveBody(SnakeSegment[] oldPosition)
+    private void MoveBody(SnakeSegment[] oldPosition)
     {
         Body.Where(s => s.Number > 0)
             .ToList()
@@ -47,7 +57,7 @@ public class Snake
             });
     }
 
-    public void MoveHead(int x, int y)
+    private void MoveHead(int x, int y)
     {
         var snakeHead = Body.Single(s => s.Number == 0);
         snakeHead.X = x;
