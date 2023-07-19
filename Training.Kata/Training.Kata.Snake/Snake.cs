@@ -1,13 +1,12 @@
-﻿using System.Drawing;
-using Spectre.Console;
+﻿using Spectre.Console;
 using Color = Spectre.Console.Color;
 
 namespace Training.Kata.Snake;
 
 public class Snake
 {
+    public readonly List<SnakeSegment> Body;
     private readonly Canvas Canvas;
-    private readonly List<SnakeSegment> Body;
 
     public Snake(Canvas canvas, List<SnakeSegment> body)
     {
@@ -39,8 +38,7 @@ public class Snake
 
     private void UpdatePosition(int x, int y)
     {
-        var oldPosition = new SnakeSegment[Body.Count];
-        Body.CopyTo(oldPosition);
+        var oldPosition = Body.Select(snakeSegment => snakeSegment.Copy()).ToArray();
         MoveHead(x, y);
         MoveBody(oldPosition);
     }
