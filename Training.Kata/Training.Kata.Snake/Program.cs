@@ -55,56 +55,20 @@ var food = new Food(13, 4, canvas);
 food.Draw();
 
 var collisionChecker = new CollisionChecker(snake, food);
-
 var timer = new Timer(TimeSpan.FromSeconds(1));
+
+var inputController = new InputController();
+var gameEngine = new GameEngine(canvas, snake, collisionChecker);
 
 ConsoleKey key = ConsoleKey.NoName;
 timer.Elapsed += (sender, eventArgs) =>
 {
-    var head = snake.GetHead();
-    var collisionType = CollisionType.None;
-    switch (key)
-    {
-        case ConsoleKey.UpArrow:
-            collisionType = collisionChecker.Check(head.X, head.Y - 1);
-            if (collisionType == CollisionType.Snake)
-            {
-                Environment.Exit(0);
-            }
-            snake.Update(head.X, head.Y - 1);
-            break;
-        case ConsoleKey.DownArrow:
-            collisionType = collisionChecker.Check(head.X, head.Y + 1);
-            if (collisionType == CollisionType.Snake)
-            {
-                Environment.Exit(0);
-            }
-            snake.Update(head.X, head.Y + 1);
-            break;
-        case ConsoleKey.LeftArrow:
-            collisionType = collisionChecker.Check(head.X - 1, head.Y);
-            if (collisionType == CollisionType.Snake)
-            {
-                Environment.Exit(0);
-            }
-            snake.Update(head.X - 1, head.Y);
-            break;
-        case ConsoleKey.RightArrow:
-            collisionType = collisionChecker.Check(head.X + 1, head.Y);
-            if (collisionType == CollisionType.Snake)
-            {
-                Environment.Exit(0);
-            }
-            snake.Update(head.X + 1, head.Y);
-            break;
-    }
-
-    Console.Clear();
-    AnsiConsole.Write(canvas);
+    var snakeDirection = inputController.ReadInput(key);
+    gameEngine.Update(snakeDirection);
+    inputController.LastDirection = snakeDirection;
 };
 
 timer.Start();
-
 while (key != ConsoleKey.Q)
 {
     key = Console.ReadKey().Key;
