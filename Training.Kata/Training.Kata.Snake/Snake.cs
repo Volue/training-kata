@@ -23,12 +23,17 @@ public class Snake
         UpdatePosition(x, y);
         
         // Narysuj węża
-        Draw(Color.Pink1);
+        Draw();
     }
 
     public void Draw(Color color)
     {
         Body.ForEach(s => Canvas.SetPixel(s.X, s.Y, color));
+    }
+    
+    public void Draw()
+    {
+        Draw(Color.Pink1);
     }
 
     public SnakeSegment GetHead()

@@ -15,10 +15,9 @@ public class GameEngine
         _collisionChecker = collisionChecker;
     }
 
-    public bool HasSnakeDied(int nextX, int nextY)
+    public bool HasSnakeDied(CollisionType collisionType)
     {
-        var collisionType = _collisionChecker.Check(nextX, nextY);
-        return collisionType is CollisionType.Border or CollisionType.Snake;
+        return collisionType is CollisionType.Wall or CollisionType.Snake;
     }
 
     public void Draw()
@@ -51,12 +50,27 @@ public class GameEngine
                 return;
         }
     
-        var hasSnakeDied = HasSnakeDied(nextX, nextY);
-        if (hasSnakeDied)
+        var collisionType = _collisionChecker.Check(nextX, nextY);
+        if (HasSnakeDied(collisionType))
         {
             Environment.Exit(0);
         }
+
+        if (collisionType == CollisionType.Food)
+        {
+            var lastSnakeSegment = _snake.Body.Single(segment => segment.Number == _snake.Body.Count - 1);
+            _snake.Update(nextX, nextY);
+            _snake.Body.Add(new SnakeSegment
+            {
+                X = lastSnakeSegment.X,
+                Y = lastSnakeSegment.Y,
+                Number = lastSnakeSegment.Number + 1
+            });
+            _snake.Draw();
+        }
+        
         _snake.Update(nextX, nextY);
+        
         Draw();
     }
 }

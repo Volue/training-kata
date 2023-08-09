@@ -5,5 +5,5 @@ public enum CollisionType
     None,
     Food,
     Snake,
-    Border
+    Wall
 }

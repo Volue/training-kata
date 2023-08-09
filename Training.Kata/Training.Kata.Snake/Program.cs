@@ -6,14 +6,8 @@ using Timer = System.Timers.Timer;
 
 
 var canvas = new Canvas(20, 20);
-
-for (var i = 0; i < 20; i++)
-{
-    canvas.SetPixel(i, 0, Color.White);
-    canvas.SetPixel(i, 19, Color.White);
-    canvas.SetPixel(0, i, Color.White);
-    canvas.SetPixel(19, i, Color.White);
-}
+var wall = new Wall(20, canvas);
+wall.Draw();
 
 var snake = new Snake(canvas, new List<SnakeSegment>
 {
@@ -54,7 +48,7 @@ snake.Draw(Color.Pink1);
 var food = new Food(13, 4, canvas);
 food.Draw();
 
-var collisionChecker = new CollisionChecker(snake, food);
+var collisionChecker = new CollisionChecker(snake, food, wall);
 var timer = new Timer(TimeSpan.FromSeconds(1));
 
 var inputController = new InputController();
