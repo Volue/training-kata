@@ -7,11 +7,14 @@ public class GameEngine
     private CollisionChecker _collisionChecker;
     private Canvas _canvas;
     private Snake _snake;
+    private Food _food;
+    private Random _random = new Random();
 
-    public GameEngine(Canvas canvas, Snake snake, CollisionChecker collisionChecker)
+    public GameEngine(Canvas canvas, Snake snake, Food food, CollisionChecker collisionChecker)
     {
         _snake = snake;
         _canvas = canvas;
+        _food = food;
         _collisionChecker = collisionChecker;
     }
 
@@ -59,18 +62,42 @@ public class GameEngine
         if (collisionType == CollisionType.Food)
         {
             var lastSnakeSegment = _snake.Body.Single(segment => segment.Number == _snake.Body.Count - 1);
-            _snake.Update(nextX, nextY);
-            _snake.Body.Add(new SnakeSegment
+            var newSegment = new SnakeSegment
             {
                 X = lastSnakeSegment.X,
                 Y = lastSnakeSegment.Y,
                 Number = lastSnakeSegment.Number + 1
-            });
+            };
+            _snake.Update(nextX, nextY);
+            _snake.Body.Add(newSegment);
             _snake.Draw();
+            
+            GenerateNewFoodXY();
+            _food.Draw();
+        }
+
+        if (collisionType == CollisionType.None)
+        {
+            _snake.Update(nextX, nextY);
         }
         
-        _snake.Update(nextX, nextY);
-        
         Draw();
+    }
+
+    private void GenerateNewFoodXY()
+    {
+        var foodPlacementFound = false;
+        while (foodPlacementFound == false)
+        {
+            var foodX = _random.Next(1, 18);
+            var foodY = _random.Next(1, 18);
+            var check = _collisionChecker.Check(foodX, foodY);
+            if (check == CollisionType.None)
+            {
+                _food.X = foodX;
+                _food.Y = foodY;
+                foodPlacementFound = true;
+            }    
+        }
     }
 }

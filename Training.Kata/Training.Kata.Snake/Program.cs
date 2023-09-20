@@ -52,7 +52,7 @@ var collisionChecker = new CollisionChecker(snake, food, wall);
 var timer = new Timer(TimeSpan.FromSeconds(1));
 
 var inputController = new InputController();
-var gameEngine = new GameEngine(canvas, snake, collisionChecker);
+var gameEngine = new GameEngine(canvas, snake, food, collisionChecker);
 
 ConsoleKey key = ConsoleKey.NoName;
 timer.Elapsed += (sender, eventArgs) =>
