@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training.Kata.Minesweeper.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training.Kata.Snake", "Training.Kata.Snake\Training.Kata.Snake.csproj", "{7C6A36A9-5195-48E8-AB58-4C57DE33F9B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training.Kata.Tetris", "Training.Kata.Tetris\Training.Kata.Tetris.csproj", "{2A13E477-8A40-47F4-BF36-C884803E82D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{7C6A36A9-5195-48E8-AB58-4C57DE33F9B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C6A36A9-5195-48E8-AB58-4C57DE33F9B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C6A36A9-5195-48E8-AB58-4C57DE33F9B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A13E477-8A40-47F4-BF36-C884803E82D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A13E477-8A40-47F4-BF36-C884803E82D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A13E477-8A40-47F4-BF36-C884803E82D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A13E477-8A40-47F4-BF36-C884803E82D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
