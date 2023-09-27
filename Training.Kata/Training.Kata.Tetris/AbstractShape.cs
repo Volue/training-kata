@@ -1,16 +1,29 @@
-﻿namespace Training.Kata.Tetris;
+﻿using Spectre.Console;
+
+namespace Training.Kata.Tetris;
 
 public abstract class AbstractShape
 {
     public List<Block> Blocks { get; set; }
+    protected Canvas _canvas;
+    
+    public AbstractShape(Canvas canvas)
+    {
+        _canvas = canvas;
+    }
     
     public abstract void Move(MoveDirection moveDirection);
     public abstract void Rotate(Rotation rotation);
+
+    public void Draw()
+    {
+        Blocks.ForEach(block => _canvas.SetPixel(block.X, block.Y, Color.Aquamarine3));
+    }
 }
 
 public class OShape : AbstractShape
 {
-    public OShape(Block topLeftBlock)
+    public OShape(Block topLeftBlock, Canvas canvas) : base(canvas)
     {
         Blocks = new List<Block>();
         Blocks.Add(topLeftBlock);
@@ -19,7 +32,7 @@ public class OShape : AbstractShape
         Blocks.Add(new Block(topLeftBlock.X + 1, topLeftBlock.Y + 1));
     }
     
-    public void Move(MoveDirection moveDirection)
+    public override void Move(MoveDirection moveDirection)
     {
         if (moveDirection == MoveDirection.Down)
         {
@@ -46,7 +59,7 @@ public class OShape : AbstractShape
         }
     }
 
-    public void Rotate(Rotation rotation)
+    public override void Rotate(Rotation rotation)
     {
         
     }
