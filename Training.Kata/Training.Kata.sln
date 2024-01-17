@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training.Kata.ConsoleGui", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Training.Kata.ConsoleGui.Test", "Training.Kata.ConsoleGui.Test\Training.Kata.ConsoleGui.Test.csproj", "{A9E33AB4-30C6-465F-8B94-C34FF3270BEA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Volue.BattleShips.Api", "Volue.BattleShips.Api\Volue.BattleShips.Api.csproj", "{040CA44B-9361-4C7C-A5D7-0E0D3574BD0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{A9E33AB4-30C6-465F-8B94-C34FF3270BEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9E33AB4-30C6-465F-8B94-C34FF3270BEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9E33AB4-30C6-465F-8B94-C34FF3270BEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{040CA44B-9361-4C7C-A5D7-0E0D3574BD0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{040CA44B-9361-4C7C-A5D7-0E0D3574BD0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{040CA44B-9361-4C7C-A5D7-0E0D3574BD0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{040CA44B-9361-4C7C-A5D7-0E0D3574BD0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

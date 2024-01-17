@@ -1,0 +1,6 @@
+@Volue.BattleShips.Api_HostAddress = http://localhost:5093
+
+GET {{Volue.BattleShips.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
