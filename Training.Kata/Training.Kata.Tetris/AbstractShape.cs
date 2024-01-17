@@ -1,4 +1,4 @@
-﻿using Spectre.Console;
+﻿using Training.Kata.ConsoleGui;
 
 namespace Training.Kata.Tetris;
 
@@ -17,12 +17,12 @@ public abstract class AbstractShape
 
     public void Erase()
     {
-        Blocks.ForEach(block => _canvas.SetPixel(block.X, block.Y, Color.Black));
+        Blocks.ForEach(block => _canvas.SetCell(block.X, block.Y, ConsoleColor.Black));
     }
 
     public void Draw()
     {
-        Blocks.ForEach(block => _canvas.SetPixel(block.X, block.Y, Color.Aquamarine3));
+        Blocks.ForEach(block => _canvas.SetCell(block.X, block.Y, ConsoleColor.Cyan));
     }
 
     public IEnumerable<Block> GetNextPosition(MoveDirection moveDirection)
@@ -57,8 +57,9 @@ public abstract class AbstractShape
     
     public void Move(MoveDirection moveDirection)
     {
+        var nextPosition = GetNextPosition(moveDirection);
         Blocks.Clear();
-        Blocks.AddRange(GetNextPosition(moveDirection));
+        Blocks.AddRange(nextPosition);
     }
 }
 

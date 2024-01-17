@@ -1,4 +1,4 @@
-﻿using Spectre.Console;
+﻿using Training.Kata.ConsoleGui;
 
 namespace Training.Kata.Tetris;
 
@@ -33,7 +33,7 @@ public class Rectangle
 
     private void DrawPixel(int x, int y)
     {
-        _canvas.SetPixel(x, y, Color.White);
+        _canvas.SetCell(x, y, ConsoleColor.White);
         _position.Add((x, y));
     }
 }

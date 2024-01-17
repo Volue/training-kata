@@ -11,6 +11,8 @@ canvas.SetCell(new Cell
     Background = ConsoleColor.Blue
 });
 
+canvas.SetCell(15, 5, ConsoleColor.Red, ConsoleColor.Blue);
+
 canvas.SetCell(new Cell
 {
     X = 10,
@@ -21,3 +23,11 @@ canvas.SetCell(new Cell
 canvas.Draw();
 
 var a = 1;
+
+canvas.ClearCanvas();
+
+canvas.SetCell(10, 5, ConsoleColor.Green, ConsoleColor.Blue);
+
+canvas.Redraw();
+
+a = 1;

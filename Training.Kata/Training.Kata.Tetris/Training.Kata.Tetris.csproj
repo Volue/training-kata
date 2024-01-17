@@ -11,4 +11,8 @@
       <PackageReference Include="Spectre.Console" Version="0.47.1-preview.0.23" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Training.Kata.ConsoleGui\Training.Kata.ConsoleGui.csproj" />
+    </ItemGroup>
+
 </Project>

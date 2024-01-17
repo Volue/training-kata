@@ -4,7 +4,13 @@ public class Canvas
 {
     public List<Cell> Cells = new();
 
-    public void Clear()
+    public void ClearCells()
+    {
+        ClearCanvas();
+        Cells = new List<Cell>();
+    }
+
+    public void ClearCanvas()
     {
         Console.BackgroundColor = ConsoleColor.Black;
         Console.ForegroundColor = ConsoleColor.White;
@@ -24,19 +30,31 @@ public class Canvas
         cellResult.Foreground = cell.Foreground;
     }
 
+    public void SetCell(int x, int y, ConsoleColor backgroundColor = ConsoleColor.Black, ConsoleColor foregroundColor = ConsoleColor.White)
+    {
+        SetCell(new Cell
+        {
+            X = x,
+            Y = y,
+            Background = backgroundColor,
+            Foreground = foregroundColor
+        });
+    }
+
     public void Draw()
     {
         Cells.OrderBy(cell => cell.Y).ToList().ForEach(cell =>
         {
-            Console.SetCursorPosition(cell.X, cell.Y);
             Console.BackgroundColor = cell.Background;
             Console.ForegroundColor = cell.Foreground;
-            Console.Write(" ");
+            Console.SetCursorPosition(cell.X * 2, cell.Y);
+            Console.Write("  ");
         });
     }
 
     public void Redraw()
     {
-        
+        ClearCanvas();
+        Draw();
     }
 }
