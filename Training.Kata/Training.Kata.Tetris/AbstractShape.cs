@@ -2,7 +2,7 @@
 
 namespace Training.Kata.Tetris;
 
-public abstract class AbstractShape
+public abstract class AbstractShape : IHaveBlocks
 {
     public readonly Guid Id = Guid.NewGuid();
     public List<Block> Blocks { get; set; }
@@ -72,6 +72,16 @@ public class OShape : AbstractShape
         Blocks.Add(new Block(topLeftBlock.X + 1, topLeftBlock.Y));
         Blocks.Add(new Block(topLeftBlock.X, topLeftBlock.Y + 1));
         Blocks.Add(new Block(topLeftBlock.X + 1, topLeftBlock.Y + 1));
+    }
+
+    private OShape(List<Block> blocks, Canvas canvas) : base(canvas)
+    {
+        Blocks = blocks;
+    }
+
+    public OShape Clone()
+    {
+        return new OShape(Blocks.Select(block => block.Clone()).ToList(), _canvas);
     }
     
     public override void Rotate(Rotation rotation)

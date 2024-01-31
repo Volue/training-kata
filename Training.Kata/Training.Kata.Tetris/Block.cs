@@ -10,4 +10,6 @@ public class Block
         X = x;
         Y = y;
     }
+
+    public Block Clone() => new(X, Y);
 }

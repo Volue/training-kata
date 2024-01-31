@@ -2,9 +2,9 @@
 
 namespace Training.Kata.Tetris;
 
-public class Rectangle
+public class Rectangle : IHaveBlocks
 {
-    private readonly List<(int X, int Y)> _position = new();
+    public List<Block> Blocks { get; } = new();
     private readonly Canvas _canvas;
     private readonly int _sizeX;
     private readonly int _sizeY;
@@ -14,26 +14,26 @@ public class Rectangle
         _sizeX = sizeX;
         _sizeY = sizeY;
         _canvas = canvas;
+        Setup();
     }
 
-    public void Draw()
+    private void Setup()
     {
         for (var x = 0; x <= _sizeX; x++)
         {
-            DrawPixel(x, 0);
-            DrawPixel(x, _sizeY);
+            Blocks.Add(new Block(x, 0));
+            Blocks.Add(new Block(x, _sizeY));
         }
         
         for (var y = 0; y <= _sizeY; y++)
         {
-            DrawPixel(0, y);
-            DrawPixel(_sizeX, y);
+            Blocks.Add(new Block(0, y));
+            Blocks.Add(new Block(_sizeX, y));
         }
     }
 
-    private void DrawPixel(int x, int y)
+    public void Draw()
     {
-        _canvas.SetCell(x, y, ConsoleColor.White);
-        _position.Add((x, y));
+        Blocks.ForEach(block => _canvas.SetCell(block.X, block.Y, ConsoleColor.White));
     }
 }
