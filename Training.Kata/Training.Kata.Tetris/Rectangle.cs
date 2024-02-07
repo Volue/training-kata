@@ -32,6 +32,11 @@ public class Rectangle : IHaveBlocks
         }
     }
 
+    public void Erase()
+    {
+        Blocks.ForEach(block => _canvas.SetCell(block.X, block.Y, ConsoleColor.Black));
+    }
+
     public void Draw()
     {
         Blocks.ForEach(block => _canvas.SetCell(block.X, block.Y, ConsoleColor.White));

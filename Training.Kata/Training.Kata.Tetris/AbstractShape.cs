@@ -78,11 +78,6 @@ public class OShape : AbstractShape
     {
         Blocks = blocks;
     }
-
-    public OShape Clone()
-    {
-        return new OShape(Blocks.Select(block => block.Clone()).ToList(), _canvas);
-    }
     
     public override void Rotate(Rotation rotation)
     {
