@@ -4,7 +4,8 @@ using Timer = System.Timers.Timer;
 
 var canvas = new Canvas();
 var rectangle = new Rectangle(12, 22, canvas);
-AbstractShape currentShape = new OShape(new Block(3, 3), canvas);
+var shapeFactory = new ShapeFactory(canvas);
+AbstractShape currentShape = shapeFactory.CreateRandom();
 var allBlacks = new List<IHaveBlocks>() {rectangle};
 var collider = new Collider();
 
@@ -23,9 +24,9 @@ timer.Elapsed += (sender, eventArgs) =>
     {
         var clonedBlocksFromCurrentShape = currentShape.Blocks.Select(x => x.Clone());
         var clonedBlocksList = clonedBlocksFromCurrentShape.ToList();
-        var staticShapeFromCurrentShape = new StaticShape(canvas, clonedBlocksList);
+        var staticShapeFromCurrentShape = new StaticShape(canvas, clonedBlocksList, currentShape.Color);
         allBlacks.Add(staticShapeFromCurrentShape);
-        currentShape = new OShape(new Block(3, 3), canvas);
+        currentShape = shapeFactory.CreateRandom();
     }
     
     currentShape.Draw();
