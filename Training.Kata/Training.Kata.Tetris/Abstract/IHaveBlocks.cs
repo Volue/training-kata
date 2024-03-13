@@ -1,4 +1,6 @@
-﻿namespace Training.Kata.Tetris;
+﻿using Training.Kata.Tetris.Models;
+
+namespace Training.Kata.Tetris.Abstract;
 
 public interface IHaveBlocks
 {

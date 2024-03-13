@@ -1,6 +1,7 @@
 ﻿using Training.Kata.ConsoleGui;
+using Training.Kata.Tetris.Abstract;
 
-namespace Training.Kata.Tetris;
+namespace Training.Kata.Tetris.Models;
 
 public class Rectangle : IHaveBlocks
 {

@@ -1,4 +1,6 @@
-﻿namespace Training.Kata.Tetris;
+﻿using Training.Kata.Tetris.Abstract;
+
+namespace Training.Kata.Tetris.Models;
 
 public class Collider
 {

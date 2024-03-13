@@ -1,4 +1,4 @@
-﻿namespace Training.Kata.Tetris;
+﻿namespace Training.Kata.Tetris.Enums;
 
 public enum MoveDirection
 {
