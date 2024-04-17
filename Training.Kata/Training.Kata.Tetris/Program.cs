@@ -14,7 +14,7 @@ AbstractShape currentShape = shapeFactory.CreateRandom();
 var allBlacks = new List<IHaveBlocks>() {rectangle};
 var collider = new Collider();
 
-var timer = new Timer(250);
+var timer = new Timer(500);
 timer.Elapsed += (sender, eventArgs) =>
 {
     rectangle.Draw();

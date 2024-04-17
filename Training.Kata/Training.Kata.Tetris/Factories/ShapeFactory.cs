@@ -18,8 +18,8 @@ public class ShapeFactory
         _factoryFunctions = new List<Func<AbstractShape>>
         {
             // CreateO,
-            CreateI,
-            // CreateL,
+            // CreateI,
+             CreateL,
             // CreateJ,
             // CreateS,
             // CreateZ
