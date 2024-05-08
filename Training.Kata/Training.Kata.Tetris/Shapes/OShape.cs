@@ -18,7 +18,7 @@ public class OShape : AbstractShape
     
     public override IEnumerable<Block> GetRotation()
     {
-        throw new NotImplementedException();
+        return Blocks;
     }
 
     public override void Rotate()

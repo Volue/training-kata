@@ -17,10 +17,10 @@ public class ShapeFactory
         _canvas = canvas;
         _factoryFunctions = new List<Func<AbstractShape>>
         {
-            // CreateO,
-            // CreateI,
-             CreateL,
-            // CreateJ,
+            CreateO,
+            CreateI,
+            CreateL,
+            CreateJ,
             // CreateS,
             // CreateZ
         };
