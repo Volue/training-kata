@@ -1,0 +1,93 @@
+API
+
+GameHub - SignalR
+Connect
+GetUpdates
+
+GET game
+[HEADER]VOLUEID
+[RESPONSE]
+{
+	"Games": [
+		{
+			Name: game-test
+			Id: 1243132-23123-2131-12321312
+		}
+	]
+}
+
+POST game/create-new
+[HEADER]VOLUEID
+[BODY]
+{
+	"Name": "game-test"
+}
+
+GET game/$ID
+[HEADER]VOLUEID
+[RESPONSE]
+{
+    "Name": "game-test",
+    "State": "InProgress", // "SettingShips", "Finished"
+	"Board": [
+		{
+            "Type": "Player"
+            "Fields": [
+                {X:1, Y:1, Type: Empty},
+                {X:1, Y:1, Type: Ship},
+                {X:1, Y:1, Type: DamagedShip},
+                {X:1, Y:1, Type: SunkShip},
+                {X:1, Y:1, Type: Bombarded},
+            ] 
+		},
+        {
+            "Type": "Enemy",
+            "Fields": [
+                {X:1, Y:1, Type: Fog},
+                {X:1, Y:1, Type: DamagedShip},
+                {X:1, Y:1, Type: SunkShip},
+                {X:1, Y:1, Type: Bombarded},
+            ] 
+		}
+	]
+}
+
+POST game/$ID/ships
+[HEADER]VOLUEID
+{
+    Ships: [
+        {
+            "Size": 4
+            "Fields": [
+                {X:1, Y:1},
+                {X:1, Y:2},
+                {X:1, Y:3},
+                {X:1, Y:4},
+            ]
+        } 
+    ]
+}
+[RESPONSE - 200]Ok
+[RESPONSE - 409]Confilct
+{
+    "Reason": "Invalid placement"
+}
+
+POST game/$ID/attack
+[HEADER]VOLUEID
+[BODY]
+{
+	"X": 1,
+	"Y": 2
+}
+[RESPONSE]
+{
+    "AttackID": "12e21e"
+}
+
+GET game/$ID/attack/$ID
+[HEADER]VOLUEID
+[RESPONSE]
+{
+    "Result": "Miss" // "Hit", "Destroy"
+}
