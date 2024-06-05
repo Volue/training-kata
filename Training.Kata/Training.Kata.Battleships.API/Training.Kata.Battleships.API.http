@@ -1,0 +1,6 @@
+@Training.Kata.Battleships.API_HostAddress = http://localhost:5290
+
+GET {{Training.Kata.Battleships.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
