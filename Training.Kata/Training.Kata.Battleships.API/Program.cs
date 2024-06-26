@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Training.Kata.Battleships.API;
+using Training.Kata.Battleships.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddSingleton<GameService, GameService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
